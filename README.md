@@ -1,4 +1,4 @@
-# Dockerized Distribute HA hadoop
+# Dockerized Distributed Highly Available Hadoop Cluster
 
 # RUN
 ```
