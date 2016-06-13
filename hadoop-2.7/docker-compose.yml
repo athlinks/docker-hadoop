@@ -48,7 +48,7 @@ services:
     hostname: journalnode1
     environment:
       - "SERVICE_NAME=hadoop-journalnode"
-      - "HADOOP_ROLE=JOURNALNODE1"
+      - "HADOOP_ROLE=JOURNALNODE"
       - "HADOOP_JOURNALNODE1=journalnode1"
       - "HADOOP_JOURNALNODE2=journalnode2"
       - "HADOOP_JOURNALNODE3=journalnode3"
@@ -69,7 +69,7 @@ services:
     hostname: journalnode2
     environment:
       - "SERVICE_NAME=hadoop-journalnode"
-      - "HADOOP_ROLE=JOURNALNODE2"
+      - "HADOOP_ROLE=JOURNALNODE"
       - "HADOOP_JOURNALNODE1=journalnode1"
       - "HADOOP_JOURNALNODE2=journalnode2"
       - "HADOOP_JOURNALNODE3=journalnode3"
@@ -90,7 +90,7 @@ services:
     hostname: journalnode3
     environment:
       - "SERVICE_NAME=hadoop-journalnode"
-      - "HADOOP_ROLE=JOURNALNODE3"
+      - "HADOOP_ROLE=JOURNALNODE"
       - "HADOOP_JOURNALNODE1=journalnode1"
       - "HADOOP_JOURNALNODE2=journalnode2"
       - "HADOOP_JOURNALNODE3=journalnode3"

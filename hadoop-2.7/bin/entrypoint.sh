@@ -104,7 +104,7 @@ else
         chown -R hduser:hadoop /data/hdfs || { echo 'CHOWN FAILED' ; exit 1; }
       fi
     fi
-  elif [ "$HADOOP_ROLE" == "JOURNALNODE1" ] || [ "$HADOOP_ROLE" == "JOURNALNODE2" ] || [ "$HADOOP_ROLE" == "JOURNALNODE3" ] ; then
+  elif [ "$HADOOP_ROLE" == "JOURNALNODE" ]; then
     if [ ! -f /data/hdfs/runonce.lock ]; then
       if [ ! -d /data/hdfs/journalnode ]; then
         touch /data/hdfs/runonce.lock
@@ -113,7 +113,6 @@ else
         mkdir /data/hdfs/journalnode || { echo 'DIRECTORY CREATION FAILED' ; exit 1; }
         chown -R hduser:hadoop /data/hdfs || { echo 'CHOWN FAILED' ; exit 1; }
       fi
-      export HADOOP_ROLE="JOURNALNODE"
     fi
   fi
 fi
