@@ -1,2 +1,2 @@
-docker build -t athlinksengineering/hadoop . && \
+docker build -t athlinks/hadoop . && \
 echo "SUCCESS!"

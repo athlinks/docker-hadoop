@@ -2,7 +2,7 @@ version: '2'
 
 services:
   zookeeper1:
-    image: athlinksengineering/confluent-zookeeper
+    image: athlinks/confluent-zookeeper
     hostname: zookeeper1
     mem_limit: 1024m
     memswap_limit: 0m
@@ -15,7 +15,7 @@ services:
       - "3888"
 
   zookeeper2:
-    image: athlinksengineering/confluent-zookeeper
+    image: athlinks/confluent-zookeeper
     hostname: zookeeper2
     mem_limit: 1024m
     memswap_limit: 0m
@@ -28,7 +28,7 @@ services:
       - "3888"
 
   zookeeper3:
-    image: athlinksengineering/confluent-zookeeper
+    image: athlinks/confluent-zookeeper
     hostname: zookeeper3
     mem_limit: 1024m
     memswap_limit: 0m
@@ -41,7 +41,7 @@ services:
       - "3888"
 
   hadoop-journalnode1:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-journalnode1
     environment:
       - "SERVICE_NAME=hadoop-journalnode"
@@ -63,7 +63,7 @@ services:
       - zookeeper3
 
   hadoop-journalnode2:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-journalnode2
     environment:
       - "SERVICE_NAME=hadoop-journalnode"
@@ -85,7 +85,7 @@ services:
       - zookeeper3
 
   hadoop-journalnode3:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-journalnode3
     environment:
       - "SERVICE_NAME=hadoop-journalnode"
@@ -107,7 +107,7 @@ services:
       - zookeeper3
 
   hadoop-namenode1:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-namenode1
     environment:
       - "SERVICE_NAME=hadoop-master"
@@ -135,7 +135,7 @@ services:
       - hadoop-journalnode3
 
   hadoop-namenode2:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-namenode2
     environment:
       - "SERVICE_NAME=hadoop-master"
@@ -163,7 +163,7 @@ services:
       - hadoop-journalnode3
 
   hadoop-resourcemanager1:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-resourcemanager1
     environment:
       - "SERVICE_NAME=hadoop-resourcemanager"
@@ -190,7 +190,7 @@ services:
       - hadoop-namenode2
 
   hadoop-resourcemanager2:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-resourcemanager2
     environment:
       - "SERVICE_NAME=hadoop-resourcemanager"
@@ -217,7 +217,7 @@ services:
       - hadoop-namenode2
 
   hadoop-datanode1:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-datanode1
     environment:
       - "SERVICE_NAME=hadoop-datanode"
@@ -244,7 +244,7 @@ services:
       - hadoop-namenode2
 
   hadoop-datanode2:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-datanode2
     environment:
       - "SERVICE_NAME=hadoop-datanode"
@@ -271,7 +271,7 @@ services:
       - hadoop-namenode2
 
   hadoop-nodemanager1:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-nodemanager1
     environment:
       - "SERVICE_NAME=hadoop-nodemanager"
@@ -300,7 +300,7 @@ services:
       - hadoop-resourcemanager2
 
   hadoop-nodemanager2:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-nodemanager2
     environment:
       - "SERVICE_NAME=hadoop-nodemanager"
@@ -329,7 +329,7 @@ services:
       - hadoop-resourcemanager2
 
   hadoop-httpfs:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-httpfs
     environment:
       - "SERVICE_NAME=hadoop-httpfs"
@@ -355,7 +355,7 @@ services:
       - hadoop-datanode2
 
   hadoop-client:
-    image: athlinksengineering/hadoop
+    image: athlinks/hadoop
     hostname: hadoop-client
     environment:
       - "SERVICE_NAME=hadoop-client"
