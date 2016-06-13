@@ -28,11 +28,7 @@ else
     echo $HADOOP_ROLE
   elif [ "$HADOOP_ROLE" == "NAMENODE2" ]; then
     echo $HADOOP_ROLE
-  elif [ "$HADOOP_ROLE" == "JOURNALNODE1" ]; then
-    echo $HADOOP_ROLE
-  elif [ "$HADOOP_ROLE" == "JOURNALNODE2" ]; then
-    echo $HADOOP_ROLE
-  elif [ "$HADOOP_ROLE" == "JOURNALNODE3" ]; then
+  elif [ "$HADOOP_ROLE" == "JOURNALNODE" ]; then
     echo $HADOOP_ROLE
   elif [ "$HADOOP_ROLE" == "DATANODE" ]; then
     echo $HADOOP_ROLE
