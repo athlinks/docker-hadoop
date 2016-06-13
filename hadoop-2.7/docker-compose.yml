@@ -192,7 +192,7 @@ services:
       - "HADOOP_RESOURCEMANAGER2=resourcemanager2"
       - "HADOOP_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181"
     ports:
-      - "8088:8089"
+      - "8088"
     depends_on:
       - zookeeper1
       - zookeeper2
