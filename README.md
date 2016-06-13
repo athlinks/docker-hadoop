@@ -1,11 +1,11 @@
 # Distributed Highly Available Hadoop Cluster Docker Image Based on Alpine
 
-[![DockerPulls](https://img.shields.io/docker/pulls/athlinks/hadoop.svg)](https://registry.hub.docker.com/u/athlinks/hadoop/)
 [![DockerStars](https://img.shields.io/docker/stars/athlinks/hadoop.svg)](https://registry.hub.docker.com/u/athlinks/hadoop/)
+[![DockerPulls](https://img.shields.io/docker/pulls/athlinks/hadoop.svg)](https://registry.hub.docker.com/u/athlinks/hadoop/)
 
-## STANDALONE
+## Standalone Mode
 
-### RUN
+### Run
 ```
 docker run -d \
 --name=hadoop-standalone \
@@ -16,19 +16,19 @@ athlinks/hadoop:2.7 && \
 docker logs -f hadoop-standalone
 ```
 
-You can view the services here:
-HDFS: http://127.0.0.1:50070
-YARN: http://127.0.0.1:8088
+You can view the services here:</p>
+HDFS: http://127.0.0.1:50070</p>
+YARN: http://127.0.0.1:8088</p>
 HTTPFS: http://127.0.0.1:14000
 
-### EXECUTE TEST JOB
+### Execute Test Job
 ```
 docker exec -it hadoop-standalone bash -c "bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar teragen 1000 teragen_out_dir"
 ```
 
-## CLUSTERED
+## Clustered Mode
 
-### RUN
+### Run
 Start the cluster for the first time:
 ```
 git clone https://github.com/athlinks/docker-hadoop.git
@@ -36,7 +36,7 @@ cd docker-hadoop/hadoop-2.7
 ./initialize.sh
 ```
 
-### EXECUTE TEST JOB
+### Execute Test Job
 ```
 docker exec -it hadoop27_client_1 bash -c "bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar teragen 1000 teragen_out_dir"
 ```
