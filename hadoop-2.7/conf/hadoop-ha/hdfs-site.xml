@@ -19,11 +19,11 @@
   </property>
   <property>
     <name>dfs.namenode.http-address.@HADOOP_CLUSTERNAME@.nn1</name>
-    <value>@HADOOP_NAMENODE1@:50070</value>
+    <value>0.0.0.0:50070</value>
   </property>
   <property>
     <name>dfs.namenode.http-address.@HADOOP_CLUSTERNAME@.nn2</name>
-    <value>@HADOOP_NAMENODE2@:50070</value>
+    <value>0.0.0.0:50070</value>
   </property>
   <property>
     <name>dfs.datanode.data.dir</name>
