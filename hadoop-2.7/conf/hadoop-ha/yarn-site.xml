@@ -21,12 +21,20 @@
     <value>@HADOOP_RESOURCEMANAGER2@</value>
   </property>
   <property>
+    <name>yarn.resourcemanager.address.rm1</name>
+    <value>@HADOOP_RESOURCEMANAGER1@:8032</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.address.rm2</name>
+    <value>@HADOOP_RESOURCEMANAGER2@:8032</value>
+  </property>
+  <property>
     <name>yarn.resourcemanager.webapp.address.rm1</name>
-    <value>@HADOOP_RESOURCEMANAGER1@:8088</value>
+    <value>0.0.0.0:8088</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.address.rm2</name>
-    <value>@HADOOP_RESOURCEMANAGER2@:8088</value>
+    <value>0.0.0.0:8088</value>
   </property>
   <property>
     <name>yarn.resourcemanager.zk-address</name>
