@@ -6,8 +6,7 @@
 ## Standalone Mode
 
 ### Run
-<script type="text/javascript" src="https://asciinema.org/a/49054.js" id="asciicast-49054" async></script>
-
+[![asciicast](https://asciinema.org/a/cbtwm3fv85ujsb4bjetix2x8a.png)](https://asciinema.org/a/cbtwm3fv85ujsb4bjetix2x8a)
 ```
 docker run -d \
 --name=hadoop-standalone \
@@ -31,9 +30,8 @@ docker exec -it hadoop-standalone bash -c "bin/hadoop jar share/hadoop/mapreduce
 ## Clustered Mode
 
 ### Run
-<script type="text/javascript" src="https://asciinema.org/a/49052.js" id="asciicast-49052" async></script>
-
 Start the cluster for the first time:
+[![asciicast](https://asciinema.org/a/49052.png)](https://asciinema.org/a/49052)
 ```
 git clone https://github.com/athlinks/docker-hadoop.git
 cd docker-hadoop/hadoop-2.7
