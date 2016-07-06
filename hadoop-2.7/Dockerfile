@@ -4,6 +4,7 @@ RUN apk add --update openssh \
     rsync \
     jq \
     procps \
+    coreutils \
     python \
     py-pip && \
     pip install supervisor && \
