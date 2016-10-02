@@ -34,7 +34,7 @@ RUN ssh-keygen -q -N "" -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key && \
     chown -R hduser:hadoop /home/hduser/.ssh
 
 ENV JAVA_HOME=/opt/jdk \
-    HADOOP_VERSION=2.7.2 \
+    HADOOP_VERSION=2.7.3 \
     HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_COMMON_HOME=/usr/local/hadoop \
     HADOOP_HDFS_HOME=/usr/local/hadoop \
