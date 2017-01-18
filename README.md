@@ -24,7 +24,7 @@ HTTPFS: http://127.0.0.1:14000
 
 ### Execute Test Job
 ```
-docker exec -it hadoop-standalone bash -c "bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar teragen 1000 teragen_out_dir"
+docker exec -it hadoop-standalone bash -c "bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar teragen 1000 teragen_out_dir"
 ```
 
 ## Clustered Mode
@@ -40,7 +40,7 @@ cd docker-hadoop/hadoop-2.7
 
 ### Execute Test Job
 ```
-docker exec -it hadoop27_client_1 bash -c "bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar teragen 1000 teragen_out_dir"
+docker exec -it hadoop27_client_1 bash -c "bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar teragen 1000 teragen_out_dir"
 ```
 
 If you have previously started and stopped the cluster, you can just run "docker-compose up -d" to restart it as the zookeeper format has already been done.
