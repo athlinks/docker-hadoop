@@ -1,4 +1,4 @@
-FROM athlinks/java-oracle:8
+FROM athlinks/alpine-openjdk8
 
 RUN apk add --update openssh \
     rsync \
@@ -6,7 +6,7 @@ RUN apk add --update openssh \
     procps \
     coreutils \
     python \
-    py-pip && \
+    py2-pip && \
     pip install supervisor && \
     rm -rf /var/cache/apk/*
 
@@ -33,8 +33,7 @@ RUN ssh-keygen -q -N "" -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key && \
     cp -a /root/.ssh /home/hduser/.ssh && \
     chown -R hduser:hadoop /home/hduser/.ssh
 
-ENV JAVA_HOME=/opt/jdk \
-    HADOOP_VERSION=2.7.3 \
+ENV HADOOP_VERSION=2.7.3 \
     HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_COMMON_HOME=/usr/local/hadoop \
     HADOOP_HDFS_HOME=/usr/local/hadoop \
@@ -44,7 +43,7 @@ ENV JAVA_HOME=/opt/jdk \
     YARN_CONF_DIR=$HADOOP_PREFIX/etc/hadoop \
     YARN_IDENT_STRING=hduser \
     HADOOP_SSH_OPTS="-F /home/hduser/.ssh/config" \
-    HADOOP_CLUSTERNAME=syracuse \
+    HADOOP_CLUSTERNAME=athlinks \
     HADOOP_ROLE=STANDALONE \
     CATALINA_OUT=/dev/stdout
 
@@ -76,6 +75,7 @@ ADD conf/supervisord /tmp/supervisord
 ADD bin/* /bin/
 ADD conf/hadoop-standalone /tmp/hadoop-standalone
 ADD conf/hadoop-ha /tmp/hadoop-ha
+ADD conf/hadoop-master-slave /tmp/hadoop-master-slave
 
 
 RUN chown -R hduser:hadoop $HADOOP_PREFIX && \

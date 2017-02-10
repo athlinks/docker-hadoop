@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+
+  master:
+    image: athlinks/hadoop:2.7
+    environment:
+      - "HADOOP_ROLE=MASTER"
+      - "HADOOP_MASTER=master"
+      - "HADOOP_SLAVE=slave"
+      - "SLAVE_MEM=2048"
+      - "SLAVE_CPU=1"
+    ports:
+      - "8088:8088"
+      - "50070:50070"
+      - "14000:14000"
+
+  slave:
+    image: athlinks/hadoop:2.7
+    environment:
+      - "HADOOP_ROLE=SLAVE"
+      - "HADOOP_MASTER=master"
+      - "HADOOP_SLAVE=slave"
+      - "SLAVE_MEM=2048"
+      - "SLAVE_CPU=1"
+    depends_on:
+      - master
+
+  client:
+    image: athlinks/hadoop:2.7
+    environment:
+      - "HADOOP_ROLE=MS-CLIENT"
+      - "HADOOP_MASTER=master"
+      - "HADOOP_SLAVE=slave"
+      - "SLAVE_MEM=2048"
+      - "SLAVE_CPU=1"
+    depends_on:
+      - master
+      - slave

@@ -3,7 +3,7 @@
 set -e
 
 if [ "$HADOOP_ROLE" == "STANDALONE" ]; then
-  echo $HADOOP_ROLE && \
+  echo "STANDALONE MODE"
   cp -a /tmp/hadoop-standalone/* $HADOOP_CONF_DIR/
   if [ ! -f /data/hdfs/runonce.lock ]; then
     if [ ! -d /data/hdfs/namenode ]; then
@@ -15,12 +15,54 @@ if [ "$HADOOP_ROLE" == "STANDALONE" ]; then
     fi
   fi
 
-else
+elif [ "$HADOOP_ROLE" == "MASTER" ] || [ "$HADOOP_ROLE" == "SLAVE" ] || [ "$HADOOP_ROLE" == "MS-CLIENT" ]; then
+  echo "MASTER / SLAVE MODE"
+  echo "ROLE: $HADOOP_ROLE"
+  echo Hadoop Master: $HADOOP_MASTER
+
+  generate_config() {
+    cat /tmp/hadoop-master-slave/$1 | sed \
+        -e "s/@HADOOP_CLUSTERNAME@/$HADOOP_CLUSTERNAME/g" \
+        -e "s/@HADOOP_MASTER@/$HADOOP_MASTER/g" \
+        -e "s/@HADOOP_SLAVE@/$HADOOP_SLAVE/g" \
+        -e "s/@MASTER_MEM@/$MASTER_MEM/g" \
+        -e "s/@MASTER_CPU@/$MASTER_CPU/g" \
+        -e "s/@SLAVE_MEM@/$SLAVE_MEM/g" \
+        -e "s/@SLAVE_CPU@/$SLAVE_CPU/g" \
+      > $HADOOP_CONF_DIR/$1
+  }
+
+  generate_config core-site.xml
+  generate_config hadoop-env.sh
+  generate_config hdfs-site.xml
+  generate_config mapred-site.xml
+  generate_config yarn-site.xml
+
   if [ "$HADOOP_ROLE" == "MASTER" ]; then
-    echo $HADOOP_ROLE
+    if [ ! -f /data/hdfs/runonce.lock ]; then
+      if [ ! -d /data/hdfs/namenode ]; then
+        touch /data/hdfs/runonce.lock
+        echo "NO DATA IN /data/hdfs/namenode"
+        echo "FORMATTING NAMENODE"
+        $HADOOP_PREFIX/bin/hdfs namenode -format -clusterId $HADOOP_CLUSTERNAME || { echo 'FORMATTING FAILED' ; exit 1; }
+        chown -R hduser:hadoop /data/hdfs || { echo 'CHOWN FAILED' ; exit 1; }
+      fi
+    fi
   elif [ "$HADOOP_ROLE" == "SLAVE" ]; then
-    echo $HADOOP_ROLE
-  elif [ "$HADOOP_ROLE" == "RESOURCEMANAGER" ]; then
+    if [ ! -f /data/hdfs/runonce.lock ]; then
+      if [ ! -d /data/hdfs/datanode ]; then
+        touch /data/hdfs/runonce.lock
+        echo "NO DATA IN /data/hdfs/datanode"
+        echo "CREATING DATANODE DIRECTORY"
+        mkdir /data/hdfs/datanode || { echo 'DIRECTORY CREATION FAILED' ; exit 1; }
+        chown -R hduser:hadoop /data/hdfs || { echo 'CHOWN FAILED' ; exit 1; }
+      fi
+    fi
+  elif [ "$HADOOP_ROLE" == "MS-CLIENT" ]; then
+    export HADOOP_ROLE=CLIENT
+  fi
+else
+  if [ "$HADOOP_ROLE" == "RESOURCEMANAGER" ]; then
     echo $HADOOP_ROLE
   elif [ "$HADOOP_ROLE" == "NODEMANAGER" ]; then
     echo $HADOOP_ROLE
@@ -40,10 +82,12 @@ else
     echo "UNKNOWN ROLE. EXITING."
     exit 1
   fi
-  echo Zookeeper Nodes: $HADOOP_ZOOKEEPER_CONNECT
-  echo Hadoop NameNode1: $HADOOP_NAMENODE1
-  echo Hadoop NameNode2: $HADOOP_NAMENODE2
-  echo Hadoop ResourceManager: $HADOOP_RESOURCEMANAGER
+  echo "HA MODE"
+  echo "ROLE: $HADOOP_ROLE"
+  echo "Zookeeper Nodes: $HADOOP_ZOOKEEPER_CONNECT"
+  echo "Hadoop NameNode1: $HADOOP_NAMENODE1"
+  echo "Hadoop NameNode2: $HADOOP_NAMENODE2"
+  echo "Hadoop ResourceManager: $HADOOP_RESOURCEMANAGER"
 
   generate_config() {
     cat /tmp/hadoop-ha/$1 | sed \
